@@ -139,3 +139,8 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Airflow
+/logs
+# TODO: check that folder creation thingy and whether it can be avoided
+/create_second_db.sh
