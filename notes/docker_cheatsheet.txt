@@ -1,0 +1,5 @@
+DOCKER CHEATSHEET
+
+# get container ip
+docker ps
+docker inspect b05900c9f902 | grep IPAddress
