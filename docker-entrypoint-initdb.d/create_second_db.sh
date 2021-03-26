@@ -1,8 +1,9 @@
 #!/bin/bash
-set -e
+# Cf. https://hub.docker.com/_/postgres/
 
+set -e
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE DATABASE dev;
-    CREATE USER devadmin;
-    GRANT ALL PRIVILEGES ON DATABASE dev TO devadmin;
+    CREATE DATABASE "DEV_DB";
+    CREATE USER "$DEV_DB_USER";
+    GRANT ALL PRIVILEGES ON DATABASE "$DEV_DB" TO "$DEV_DB_USER";
 EOSQL

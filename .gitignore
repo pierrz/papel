@@ -143,4 +143,4 @@ cython_debug/
 # Airflow
 /logs
 # TODO: check that folder creation thingy and whether it can be avoided
-/create_second_db.sh
+# ./create_second_db.sh/
