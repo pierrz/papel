@@ -3,3 +3,6 @@ DOCKER CHEATSHEET
 # get container ip
 docker ps
 docker inspect b05900c9f902 | grep IPAddress
+
+# selective docker-compose up via profiles
+docker-compose --profile frontend --profile debug up -d
