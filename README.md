@@ -2,7 +2,7 @@
 
 <br>A docker based repository embedded with an ETL/data-pipeline toolkit for data engineering/science projects.
 
-##### work in progress to build a basic pipeline including (tbd)
+#### work in progress to build a basic pipeline including (tbd)
  - (massive) dummy json data generator/sources
  - ported to Mongo via Spark
  - exposed via FastApi and GraphQL
