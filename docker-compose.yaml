@@ -32,7 +32,7 @@ x-airflow-common:
 
 services:
   
-  # airflow
+  # airflow 
   postgres:
     container_name: "airflow_db_container"
     profiles: ["airflow"]
@@ -144,11 +144,16 @@ services:
     image: "mongo:latest"
     restart: "always"
     environment:
-      MONGO_INITDB_DATABASE: "${MONGO_INITDB_DATABASE}"
-      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
-      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
-    volumes:  
+      - MONGO_INITDB_DATABASE="${MONGO_INITDB_DATABASE}"
+      - MONGO_INITDB_ROOT_USERNAME="${MONGO_INITDB_ROOT_USERNAME}"
+      - MONGO_INITDB_ROOT_PASSWORD="${MONGO_INITDB_ROOT_PASSWORD}"
+      - MONGO_API_USER="${MONGO_API_USER}"
+      - MONGO_API_PWD="${MONGO_API_PWD}"
+    
+    volumes:
       - data-volume:/etc/data/source_db
+      - ./data:/mnt
+      - ./docker-entrypoint-initdb.d/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
 
   mongo-express:
     container_name: "mongodbexpress_container"
@@ -174,7 +179,8 @@ services:
       POSTGRES_DB: "${DEV_DB}"
     volumes:  
       - data-volume:/etc/data/dev_db
-      - ./create_second_db.sh:/docker-entrypoint-initdb.d/create_second_db.sh
+      # - ./create_second_db.sh:/docker-entrypoint-initdb.d/create_second_db.sh
+      - ./docker-entrypoint-initdb.d/create_second_db.sh:/docker-entrypoint-initdb.d/create_second_db.sh
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "devadmin"]
       interval: "5s"

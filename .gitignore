@@ -145,4 +145,6 @@ cython_debug/
 # TODO: check that folder creation thingy and whether it can be avoided
 # ./create_second_db.sh/
 
+# own stuff
 /data
+creds.txt
