@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   api_test:
-    container_name: api_test
+    container_name: papel_api_test
     image: api_img
     build:
       context: .
@@ -18,7 +18,7 @@ services:
       - celery
 
   api_prod:
-    container_name: api_prod
+    container_name: papel_api_prod
     image: api_img   # run with only app_test 1st
 #    build:
 #      context: .

@@ -5,7 +5,7 @@ from config import app_config
 def init_db_connection():
     # Connect to an existing database
     conn = psycopg2.connect(
-        f"dbname={config.DB_NAME} user={config.DB_USER} host=db password={config.DB_PASSWORD}"
+        f"dbname={app_config.DB_NAME} user={app_config.DB_USER} host=db password={app_config.DB_PASSWORD}"
     )
     # Open a cursor to perform database operations
     cur = conn.cursor()

@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from src.db.database import close_db_connection, init_db_connection
 from src.libs.main_lib import fetch_json_from_url, load_json
+from src.tasks.main_tasks import dummy_task, check_db_task
 from pathlib import Path
 import os
 

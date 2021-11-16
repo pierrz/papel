@@ -8,11 +8,11 @@ services:
 
   nginx:
     image: nginx
-    container_name: brif_nginx
+    container_name: papel_nginx
     volumes:
       - ./setup/nginx/papel_docker.conf:/etc/nginx/nginx.conf:ro
       - ./setup/nginx/app_docker.conf:/etc/nginx/sites-enabled/app_docker.conf:ro
-      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
+#      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
       - ./logs/nginx:/var/log/nginx
       - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
@@ -22,7 +22,7 @@ services:
       - api_prod
 
   db:
-    container_name: postgres
+    container_name: papel_postgres
     build:
       context: .
       dockerfile: setup/postgres/Dockerfile
@@ -41,7 +41,7 @@ services:
       - api_db:/var/lib/postgresql/data
 
   celery:
-    container_name: celery
+    container_name: papel_celery
     build:
       context: .
       dockerfile: setup/celery/Dockerfile
@@ -54,7 +54,7 @@ services:
       - rabbitmq
 
   rabbitmq:
-    container_name: rabbitmq
+    container_name: papel_rabbitmq
     image: rabbitmq:3.8-management
     restart: on-failure
     ports:
