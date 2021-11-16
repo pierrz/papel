@@ -10,6 +10,13 @@ Embedded with:
 
 <br>
 
+#### Reference
+This repository follows on the very complete [tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql) project, created by the maintainer of [FastAPI](https://github.com/tiangolo/fastapi).
+
+Here, we have removed some backend (`Traeffik`) and frontend (authentication, UI with `vue.js`) elements, as we try to design a minimal and adaptive architecture. The goal being to simplify the implementation of data pipelines within existing systems.
+
+<br>
+
 #### Installation
 You should use the `main` branch, other branches being used for development purpose.
 
