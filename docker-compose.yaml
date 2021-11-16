@@ -32,7 +32,6 @@ x-airflow-common:
 
 services:
   
-  # airflow 
   postgres:
     container_name: "airflow_db_container"
     profiles: ["airflow"]
