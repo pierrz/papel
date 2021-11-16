@@ -10,14 +10,21 @@ A boilerplate docker based repository, embedded with
 
 #### Installation
 You should use the `main` branch, other branches being used for development purpose.
-You might have to mount your certificate in the nginx container volume such as what is done here :
+
+You might have to mount your certificate provider directory in the nginx container volume (such as what we are doing do here) :
 ```
 volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
 ```
-And also create the related `certificate.json` file.
+
+And also create the required configuration files
+- `certificate.json`
+- `app_docker.conf`
+- `monitor_docker.conf`
 
 Then you're left with creating the `.env` environment file, and `servers.json` if you use the `pgadmin` container.
+
+For all these required files, you'll find `xxxxxx.example` sample files ready to adapt.
 <br>
 
 #### Run
