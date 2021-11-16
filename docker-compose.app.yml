@@ -8,8 +8,16 @@ services:
     build:
       context: .
       dockerfile: setup/app/Dockerfile
-    env_file:
-      - ./setup/app/.env
+#    env_file:
+#      - ./setup/app/.env
+    environment:
+      APP_BASE_URL: "${APP_BASE_URL}"
+      APP_PORT: "${APP_PORT}"
+      CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
+      CELERY_RESULT_BACKEND: "${CELERY_RESULT_BACKEND}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
     command: pytest -v
     volumes:
       - ./logs/pytest:/opt/app/logs

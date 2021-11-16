@@ -5,7 +5,8 @@ description = "Papel dev environment."
 authors = ["Pierre-Edouard Barrault <pierrz@tuta.io>"]
 
 [tool.poetry.dependencies]
-python = "==3.8.10"
+# python = "==3.8.10"
+python = ">=3.8,<3.11"
 aiofiles = "==0.7.0"
 amqp = "==5.0.6"
 anyio = "==3.3.4"

@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 def get_test_fixtures_path():
-    return [os.sep, "opt", "app", "test", "fixtures"]
+    return [os.sep, "opt", "app", "tests", "fixtures"]
 
 
 fixtures_path_array = get_test_fixtures_path()
