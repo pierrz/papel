@@ -9,6 +9,7 @@ A boilerplate docker based repository, embedded with
 <br>
 
 #### Installation
+You should use the `main` branch, other branches being used for development purpose.
 You might have to mount your certificate in the nginx container volume such as what is done here :
 ```
 volumes:
