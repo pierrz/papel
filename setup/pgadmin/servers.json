@@ -1,10 +1,10 @@
 {"Servers": {
         "1": {
-            "Name": "IIIFastApi",
+            "Name": "Papel",
             "Group": "Docker",
             "Port": 5432,
             "Username": "postgresadmin",
-            "Host": "postgres",
+            "Host": "papel_postgres",
             "SSLMode": "prefer",
             "MaintenanceDB": "admindb"
         }
