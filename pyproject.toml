@@ -11,7 +11,7 @@ amqp = "==5.0.6"
 anyio = "==3.3.4"
 astroid = "==2.8.5"
 attrs = "==21.2.0"
-backports.entry-points-selectable = "==1.1.1"
+"backports.entry-points-selectable" = "==1.1.1"
 billiard = "==3.6.4.0"
 celery = "==5.2.0"
 certifi = "==2021.10.8"
@@ -75,3 +75,15 @@ isort = "==5.10.1"
 pre-commit = "==2.15.0"
 pylint = "==2.11.1"
 pytest = "==6.2.5"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    # temp fix for starlette/python3.8/Jinja3.1
+    "ignore::DeprecationWarning",
+]
