@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  api_test:
+    container_name: api_test
+    image: api_img
+    build:
+      context: .
+      dockerfile: setup/app/Dockerfile
+    env_file:
+      - ./setup/app/.env
+    command: pytest -v
+    volumes:
+      - ./logs/pytest:/opt/app/logs
+    depends_on:
+      - db
+      - celery
+
+  api_prod:
+    container_name: api_prod
+    image: api_img   # run with only app_test 1st
+#    build:
+#      context: .
+#      dockerfile: setup/app/Dockerfile
+    env_file:
+      - setup/app/.env
+    command: uvicorn main:app --host 0.0.0.0 --reload
+    depends_on:
+      - api_test
+    ports:
+      - "${APP_PORT}:${APP_PORT}"

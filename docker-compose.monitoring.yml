@@ -1,0 +1,98 @@
+version: "3.9"
+
+#volumes:
+#  sonarqube_conf:
+#  sonarqube_data:
+#  sonarqube_extensions:
+#  sonarqube_bundled-plugins:
+#  postgresql_sonar:
+#  postgresql_sonar_data:
+
+services:
+
+  flower:
+    container_name: flower
+    image: mher/flower:latest
+    command: ["celery", "--broker=${CELERY_BROKER_URL}", "flower"]
+    environment:
+      CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
+      CELERY_RESULT_BACKEND: "${CELERY_RESULT_BACKEND}"
+    ports:
+      - "49555:5555"
+    depends_on:
+      - celery
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    env_file:
+      - setup/pgadmin/.env
+#    environment:
+#
+#      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+#      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+      # TODO: check the csrf setting further
+#      WTF_CSRF_CHECK_DEFAULT: "False"
+    volumes:
+      - ./setup/pgadmin/servers.json:/pgadmin4/servers.json
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+
+# [wip]
+#  sonarqube:
+#    image: sonarqube
+#    expose:
+#      - 9005
+#    ports:
+#      - "9005:9000"
+#    networks:
+#      - sonarnet
+#    environment:
+#      - SONARQUBE_JDBC_URL=jdbc:postgresql://db_sonar:5432/sonar
+#      - SONARQUBE_JDBC_USERNAME=sonar
+#      - SONARQUBE_JDBC_PASSWORD=sonar
+#    depends_on:
+#      - db_sonar
+#    volumes:
+#      - sonarqube_conf:/opt/sonarqube/conf
+#      - sonarqube_data:/opt/sonarqube/data
+#      - sonarqube_extensions:/opt/sonarqube/extensions
+#      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+#
+#  sonarscanner:
+##    container_name: sonarscanner
+#    image: sonarsource/sonar-scanner-cli
+##    build:
+##      context: .
+##      dockerfile: setup/sonar-scanner/Dockerfile
+#    networks:
+#      - sonarnet
+#    command: sonar-scanner -X
+#    depends_on:
+#      - sonarqube
+#    environment:
+#      SONAR_PROJECT_KEY: "IIIFastApi"
+#      SONAR_HOST_URL: "http://localhost:9005"
+##      SONAR_LOGIN: "tokenito"
+#      SONAR_LOGIN: "b78fa993929b85c844f7563afdec839d2f658d21"
+#    volumes:
+#      - ./app:/usr/src
+##      - .sonar-project.properties:/usr/src/sonar-project.properties:ro
+##      - .sonar-project.properties:/opt/sonar-scanner/conf/sonar-scanner.properties:ro
+#
+#  db_sonar:
+#    image: postgres
+#    networks:
+#      - sonarnet
+#    environment:
+#      - POSTGRES_USER=sonar
+#      - POSTGRES_PASSWORD=sonar
+#    volumes:
+#      - postgresql_sonar:/var/lib/postgresql
+#      - postgresql_sonar_data:/var/lib/postgresql/data
+#
+#networks:
+#  sonarnet:

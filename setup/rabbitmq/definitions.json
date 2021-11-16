@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "name": "api_user",
+      "password_hash": "828e217ce6d9c30ee2becf1c09ebe21a69ca850676f28a6c3e5a10365aef47f3",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": ["iiifastapi", "administrator"]
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "api_vhost"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "api_user",
+      "vhost": "api_vhost",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ]
+}
