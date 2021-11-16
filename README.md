@@ -1,7 +1,7 @@
 # papel
 <br>
 
-A boilerplate docker based tool, designed to streamline the development and deployment of APIs and data pipelines.
+A boilerplate tool based on Docker, designed to streamline the development and deployment of APIs and data pipelines.
 
 Embedded with:
 - FastAPI
