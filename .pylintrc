@@ -3,11 +3,15 @@
 [MASTER]
 # 12 threads for 6 cores, change at will
 jobs=12
+fail-under=8.0
 # some troublesome files to exclude, to avoid 'maximum recursion depth exceeded' errors
 ignore=
     .venv,
+    venv,
     .git,
-    __pycache__
+    __pycache__,
+    logs,
+    setup
 
 [REPORTS]
 reports=yes

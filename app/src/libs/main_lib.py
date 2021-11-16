@@ -1,10 +1,6 @@
 import json
-import os
-import shutil
-from pathlib import Path, PurePath
 
 import requests
-from worker import logger
 
 
 def fetch_json_from_url(url):
@@ -15,7 +11,5 @@ def fetch_json_from_url(url):
 
 def load_json(filepath):
     """Load JSON into dict object"""
-    jsonFile = open(filepath)
-    jsonStr = jsonFile.read()
-    data_dict = json.loads(jsonStr)
-    return data_dict
+    json_str = open(filepath).read()
+    return json.loads(json_str)

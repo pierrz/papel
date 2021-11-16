@@ -1,12 +1,16 @@
-from config import app_config
+"""
+Core test module with a dedicated test base class
+"""
+
+from dataclasses import dataclass
+
+# from config import app_config
 from fastapi.testclient import TestClient
 from src.db.database import close_db_connection, init_db_connection
 from src.libs.test_lib import get_expected_results_dict
-import pytest
-import shutil
-from pathlib import Path
 
 
+@dataclass
 class EndpointTestBase:
     """
     Base test class to check whether all the endpoints are up and running
@@ -33,14 +37,29 @@ class EndpointTestBase:
 
 
 def test_endpoint_check_api_live(client: TestClient):
+    """
+    Test if the api is up
+    :param client: current FastAPI test client
+    :return: does its thing
+    """
     EndpointTestBase(client, "api_live")
 
 
 def test_endpoint_check_load_db(client: TestClient):
+    """
+    Test if the the DB can be loaded with data
+    :param client: current FastAPI test client
+    :return: does its thing
+    """
     EndpointTestBase(client, "load_db")
 
 
 def test_endpoint_check_read_db(client: TestClient):
+    """
+    Test if data can be retrieved from the DB
+    :param client: current FastAPI test client
+    :return: does its thing
+    """
     EndpointTestBase(client, "read_db")
 
     # clean db after load/reads
@@ -51,4 +70,9 @@ def test_endpoint_check_read_db(client: TestClient):
 
 
 def test_endpoint_check_celery(client: TestClient):
+    """
+    Test if Celery is connected and can run a data pipeline
+    :param client: current FastAPI test client
+    :return: does its thing
+    """
     EndpointTestBase(client, "check_celery")

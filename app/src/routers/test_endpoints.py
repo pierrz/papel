@@ -1,11 +1,12 @@
+"""
+All test endpoints
+"""
+
+
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from src.db.database import close_db_connection, init_db_connection
-from src.libs.main_lib import fetch_json_from_url, load_json
-from src.tasks.main_tasks import dummy_task, check_db_task
-from pathlib import Path
-import os
-
+from src.tasks.main_tasks import check_db_task, dummy_task
 
 router = APIRouter(
     prefix="/test",
@@ -26,13 +27,20 @@ router = APIRouter(
 # Endpoint test routes
 @router.get("/api_live")
 async def api_live() -> JSONResponse:
+    """
+    Check if the api is up
+    :return: a basic response
+    """
     return JSONResponse({"message": "Hello World"})
 
 
 @router.get("/load_db")
 # async def load_db(cfg=Depends(get_config)) -> JSONResponse:
 async def load_db() -> JSONResponse:
-
+    """
+    Load the DB with dummy data
+    :return: a success message response
+    """
     # conn, cur = init_db_connection(cfg)
     conn, cur = init_db_connection()
     cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
@@ -45,6 +53,10 @@ async def load_db() -> JSONResponse:
 
 @router.get("/read_db")
 async def read_db() -> JSONResponse:
+    """
+    Read previously loaded dummy data from the DB
+    :return: the retrieved data as a response
+    """
     conn, cur = init_db_connection()
     cur.execute("SELECT * FROM test;")
     data = cur.fetchone()
@@ -55,6 +67,10 @@ async def read_db() -> JSONResponse:
 
 @router.get("/check_celery")
 async def check_celery() -> JSONResponse:
+    """
+    Starts a dummy celery pipeline and retrieves the result from the DB
+    :return: the retrieved data as a response
+    """
     chain = dummy_task.s(3) | check_db_task.s()
     result = chain()
     task_result = result.get()

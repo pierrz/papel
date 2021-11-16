@@ -1,6 +1,6 @@
 # papel
 
-<br>A boilerplate docker based repository, embedded with 
+<br>A boilerplate docker based repository, embedded with
 - FastAPI
 - Celery + Rabbit-MQ + Flower
 - Postgres + PGAdmin
@@ -15,7 +15,11 @@ volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
 ```
 
-   
+More settings
+```
+poetry config virtualenvs.in-project true && poetry install
+```
+
 #### [backlog]
  - (massive) dummy json data generator/sources
  - ported to Mongo via Spark

@@ -18,7 +18,5 @@ def get_expected_results_dict(test_name):
 
 
 def get_expected_results_dict_for_specific_file(filename):
-    expected_results_path = Path(
-        *fixtures_path_array, f"test_{filename}.json"
-    )
+    expected_results_path = Path(*fixtures_path_array, f"test_{filename}.json")
     return json.load(open(expected_results_path, "r"))
