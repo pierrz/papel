@@ -138,4 +138,4 @@ dmypy.json
 logs
 setup/rabbitmq/definitions.json
 setup/pgadmin/servers.json
-setup/nginx/certificate.json
+setup/nginx/certificate.conf
