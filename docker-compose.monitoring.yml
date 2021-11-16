@@ -1,12 +1,5 @@
 version: "3.9"
 
-#volumes:
-#  sonarqube_conf:
-#  sonarqube_data:
-#  sonarqube_extensions:
-#  sonarqube_bundled-plugins:
-#  postgresql_sonar:
-#  postgresql_sonar_data:
 
 services:
 
@@ -40,7 +33,16 @@ services:
     ports:
       - "5050:80"
 
+
 # [wip]
+#volumes:
+#  sonarqube_conf:
+#  sonarqube_data:
+#  sonarqube_extensions:
+#  sonarqube_bundled-plugins:
+#  postgresql_sonar:
+#  postgresql_sonar_data:
+
 #  sonarqube:
 #    image: sonarqube
 #    expose:
