@@ -15,6 +15,9 @@ You might have to mount your certificate in the nginx container volume such as w
 volumes:
     - /etc/letsencrypt:/etc/letsencrypt:ro
 ```
+And also create the related `certificate.json` file.
+
+Then you're left with creating the `.env` environment file, and `servers.json` if you use the `pgadmin` container.
 <br>
 
 #### Run

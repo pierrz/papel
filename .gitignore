@@ -139,3 +139,5 @@ logs
 setup/rabbitmq/definitions.json
 setup/pgadmin/servers.json
 setup/nginx/certificate.conf
+setup/nginx/app_docker.conf
+setup/nginx/monitor_docker.conf

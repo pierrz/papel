@@ -25,12 +25,7 @@ services:
 
   api_prod:
     container_name: papel_api_prod
-    image: api_img   # run with only app_test 1st
-#    build:
-#      context: .
-#      dockerfile: setup/app/Dockerfile
-#    env_file:
-#      - setup/app/.env
+    image: api_img
     environment:
       APP_BASE_URL: "${APP_BASE_URL}"
       APP_PORT: "${APP_PORT}"

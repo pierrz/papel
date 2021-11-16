@@ -46,11 +46,7 @@ services:
     image: celery_app_img
     volumes:
       - ./logs/celery:/opt/celery_app/logs
-#    env_file:
-#      - setup/app/.env
     environment:
-#      APP_BASE_URL: "${APP_BASE_URL}"
-#      APP_PORT: "${APP_PORT}"
       CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
       CELERY_RESULT_BACKEND: "${CELERY_RESULT_BACKEND}"
       DB_NAME: "${DB_NAME}"
