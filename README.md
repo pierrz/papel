@@ -25,6 +25,7 @@ And also create the required configuration files
 Then you're left with creating the `.env` environment file, and `servers.json` if you use the `pgadmin` container.
 
 For all these required files, you'll find `xxxxxx.example` sample files ready to adapt.
+
 <br>
 
 #### Run
