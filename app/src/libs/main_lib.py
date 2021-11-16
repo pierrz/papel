@@ -1,3 +1,8 @@
+"""
+Common utilities
+"""
+
+
 import json
 
 import requests
@@ -5,11 +10,12 @@ import requests
 
 def fetch_json_from_url(url):
     """Fetch JSON data from given url"""
-    r = requests.get(url)
-    return r.json()
+    response = requests.get(url)
+    return response.json()
 
 
-def load_json(filepath):
+def load_json(file_path):
     """Load JSON into dict object"""
-    json_str = open(filepath).read()
-    return json.loads(json_str)
+    with open(file_path, "rt", encoding="utf8") as json_file:
+        json_str = json_file.read()
+        return json.loads(json_str)

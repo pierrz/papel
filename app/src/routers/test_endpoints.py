@@ -6,7 +6,7 @@ All test endpoints
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from src.db.database import close_db_connection, init_db_connection
-from src.tasks.main_tasks import check_db_task, dummy_task
+from src.tasks.test_tasks import check_db_task, dummy_task
 
 router = APIRouter(
     prefix="/test",
@@ -15,16 +15,6 @@ router = APIRouter(
 )
 
 
-# TODO: improve the caching of config
-# from functools import lru_cache
-# from config import app_config
-# from fastapi import Depends
-# @lru_cache()
-# def get_config():
-#     return Config()
-
-
-# Endpoint test routes
 @router.get("/api_live")
 async def api_live() -> JSONResponse:
     """
@@ -35,13 +25,11 @@ async def api_live() -> JSONResponse:
 
 
 @router.get("/load_db")
-# async def load_db(cfg=Depends(get_config)) -> JSONResponse:
 async def load_db() -> JSONResponse:
     """
     Load the DB with dummy data
     :return: a success message response
     """
-    # conn, cur = init_db_connection(cfg)
     conn, cur = init_db_connection()
     cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
     cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)", (100, "abc'def"))

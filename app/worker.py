@@ -1,3 +1,7 @@
+"""
+Module spinning up the Celery worker
+"""
+
 from celery import Celery
 from celery.utils.log import get_task_logger
 from config import celery_config

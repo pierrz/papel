@@ -1,9 +1,10 @@
 # based on https://www.getcodeflow.com/pylint-configuration.html
 
 [MASTER]
-# 12 threads for 6 cores, change at will
-jobs=12
+# 4 threads for 2 cores, change at will
+jobs=4
 fail-under=8.0
+disable= import-error   # fix import errors when using the dev environment
 # some troublesome files to exclude, to avoid 'maximum recursion depth exceeded' errors
 ignore=
     .venv,
