@@ -1,7 +1,9 @@
 # papel
 <br>
 
-A boilerplate docker based repository, embedded with
+A boilerplate docker based tool, designed to streamline the development and deployment of APIs and data pipelines.
+
+Embedded with:
 - FastAPI
 - Celery + Rabbit-MQ + Flower
 - Postgres + PGAdmin
@@ -11,20 +13,18 @@ A boilerplate docker based repository, embedded with
 #### Installation
 You should use the `main` branch, other branches being used for development purpose.
 
-You might have to mount your certificate provider directory in the nginx container volume (such as what we are doing do here) :
-```
-volumes:
-    - /etc/letsencrypt:/etc/letsencrypt:ro
-```
+You might have to tweak the `volumes` of the `papel_nginx` service to import your own certificate provider directory.
 
-And also create the required configuration files
+You have create the required `nginx` configuration files:
 - `certificate.json`
 - `app_docker.conf`
 - `monitor_docker.conf`
 
-Then you're left with creating the `.env` environment file, and `servers.json` if you use the `pgadmin` container.
+Same goes with `servers.json` if you use the `pgadmin` container.
 
-For all these required files, you'll find `xxxxxx.example` sample files ready to adapt.
+Then you're left with creating the `.env` environment file.
+
+*NB: For all these required files, you'll find `xxxxxx.example` sample files ready to adapt.*
 
 <br>
 
