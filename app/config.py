@@ -3,28 +3,35 @@ Configuration module
 """
 
 import os
-from dataclasses import dataclass
 
 from pydantic import BaseSettings
 
 
-@dataclass
 class Config(BaseSettings):
     """
-    Config class. Used as a base class for the Celery config.
+    Config class.
     """
+
     DB_NAME = os.getenv("DB_NAME")
     DB_USER = os.getenv("DB_USER")
     DB_PASSWORD = os.getenv("DB_PASSWORD")
-    APP_BASE_URL = f"https://{os.getenv('APP_BASE_URL')}"  # prod settings
-    # APP_BASE_URL = os.getenv('APP_BASE_URL')  # local settings
+    LOCAL_DEV = True
+    if LOCAL_DEV:
+        # APP_BASE_URL = "http://localhost"
+        BASE_URL = "http://localhost"
+        APP_BASE_URL = f"{BASE_URL}:{os.getenv('APP_PORT')}"
+    else:
+        APP_SUBDOMAIN = os.getenv("APP_SUBDOMAIN")
+        BASE_URL = os.getenv("BASE_URL")
+        APP_BASE_URL = f"https://{APP_SUBDOMAIN}.{BASE_URL}"
+        # APP_BASE_URL = f"https://{os.getenv('APP_BASE_URL')}"
 
 
-@dataclass
 class CeleryConfig(BaseSettings):
     """
     Celery config class.
     """
+
     broker_url = os.getenv("CELERY_BROKER_URL")
     result_backend = os.getenv("CELERY_RESULT_BACKEND")
     imports = ["src.tasks.test_tasks"]

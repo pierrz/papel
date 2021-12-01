@@ -2,6 +2,14 @@ version: "3.9"
 
 services:
 
+  nginx:
+    volumes:
+      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
+    depends_on:
+      - pgadmin
+    profiles:
+      - live_prod
+
   flower:
     container_name: papel_flower
     image: mher/flower:latest

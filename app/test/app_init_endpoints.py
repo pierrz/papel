@@ -1,11 +1,11 @@
 """
-All test endpoints
+All endpoints used for testing purpose. Not included in the documentation
 """
-
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from src.db.database import close_db_connection, init_db_connection
+from src.db.database import close_db_connection  # , delete_row
+from src.db.database import init_db_connection
 from src.tasks.test_tasks import check_db_task, dummy_task
 
 router = APIRouter(
@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 
-@router.get("/api_live")
+@router.get("/api_live", include_in_schema=False)
 async def api_live() -> JSONResponse:
     """
     Check if the api is up
@@ -24,7 +24,7 @@ async def api_live() -> JSONResponse:
     return JSONResponse({"message": "Hello World"})
 
 
-@router.get("/load_db")
+@router.get("/load_db", include_in_schema=False)
 async def load_db() -> JSONResponse:
     """
     Load the DB with dummy data
@@ -39,7 +39,7 @@ async def load_db() -> JSONResponse:
     return JSONResponse({"response_db": "test data loaded"})
 
 
-@router.get("/read_db")
+@router.get("/read_db", include_in_schema=False)
 async def read_db() -> JSONResponse:
     """
     Read previously loaded dummy data from the DB
@@ -53,7 +53,7 @@ async def read_db() -> JSONResponse:
     return JSONResponse({"response_db": data})
 
 
-@router.get("/check_celery")
+@router.get("/check_celery", include_in_schema=False)
 async def check_celery() -> JSONResponse:
     """
     Starts a dummy celery pipeline and retrieves the result from the DB

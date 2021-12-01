@@ -10,17 +10,23 @@ services:
     image: nginx
     container_name: papel_nginx
     volumes:
-      - ./setup/nginx/papel_docker.conf:/etc/nginx/nginx.conf:ro
+      - ./setup/nginx/docker_base.conf:/etc/nginx/nginx.conf:ro
       - ./setup/nginx/certificate.conf:/etc/nginx/certificate.conf:ro
-      - ./setup/nginx/app_docker.conf:/etc/nginx/sites-enabled/app_docker.conf:ro
-      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
       - ./logs/nginx:/var/log/nginx
       - /etc/letsencrypt:/etc/letsencrypt:ro
+#      - ./setup/nginx/papel_docker.conf:/etc/nginx/nginx.conf:ro
+#      - ./setup/nginx/certificate.conf:/etc/nginx/certificate.conf:ro
+#      - ./setup/nginx/app_docker.conf:/etc/nginx/sites-enabled/app_docker.conf:ro
+#      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
+#      - ./logs/nginx:/var/log/nginx
+#      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - api_prod
+#    depends_on:
+#      - api_prod
+    profiles:
+      - live_prod
 
   db:
     container_name: papel_postgres
@@ -37,23 +43,6 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - papel_db:/var/lib/postgresql/data
-
-  celery:
-    container_name: papel_celery
-    build:
-      context: .
-      dockerfile: setup/celery/Dockerfile
-    image: celery_app_img
-    volumes:
-      - ./logs/celery:/opt/celery_app/logs
-    environment:
-      CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
-      CELERY_RESULT_BACKEND: "${CELERY_RESULT_BACKEND}"
-      DB_NAME: "${DB_NAME}"
-      DB_USER: "${DB_USER}"
-      DB_PASSWORD: "${DB_PASSWORD}"
-    depends_on:
-      - rabbitmq
 
   rabbitmq:
     container_name: papel_rabbitmq

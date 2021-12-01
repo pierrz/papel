@@ -14,7 +14,7 @@ def get_test_fixtures_path():
     Retrieves the test fixtures directory path
     :return: test fixtures directory path (string)
     """
-    return [os.sep, "opt", "app", "tests", "fixtures"]
+    return [os.sep, "opt", "app", "test", "fixtures"]
 
 
 fixtures_path_array = get_test_fixtures_path()
