@@ -28,8 +28,6 @@ build-backend = "poetry.masonry.api"
 filterwarnings = [
     "error",
     "ignore::UserWarning",
-    # temp fix for starlette/python3.8/Jinja3.1
-    # "ignore::DeprecationWarning",
     # TODO: remove once Jinja is updated
     "ignore:'contextfunction' is renamed to 'pass_context', the old name will be removed in Jinja 3.1.:DeprecationWarning",
 ]

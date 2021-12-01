@@ -21,6 +21,7 @@ Here, we have removed some backend (`Traeffik`) and frontend (authentication, UI
 You should use the `main` branch, other branches being used for development purpose.
 
 You might have to tweak the `volumes` of the `papel_nginx` service to import your own certificate provider directory.
+Same goes for the `api_test / api_prod` where you might use the shared `commons` to mount your data within `volumes`.
 
 You have create the required `nginx` configuration files:
 - `certificate.json`
@@ -38,17 +39,17 @@ Then you're left with creating the `.env` environment file.
 #### Run
 Only the core containers
 ```
-docker-compose docker-compose.yml up
+docker-compose -f docker-compose.core.yml up
 ```
 
 \+ monitoring containers
 ```
-docker-compose -f docker-compose.yml -f docker-compose.monitoring.yml up
+docker-compose -f docker-compose.core.yml -f docker-compose.monitoring.yml up
 ```
 
 \+ dummy app (including test container)
 ```
-docker-compose -f docker-compose.yml -f docker-compose.monitoring.yml -f docker-compose.app.yml up
+docker-compose -f docker-compose.core.yml -f docker-compose.monitoring.yml -f docker-compose.app.yml up
 ```
 <br>
 

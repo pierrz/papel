@@ -14,17 +14,9 @@ services:
       - ./setup/nginx/certificate.conf:/etc/nginx/certificate.conf:ro
       - ./logs/nginx:/var/log/nginx
       - /etc/letsencrypt:/etc/letsencrypt:ro
-#      - ./setup/nginx/papel_docker.conf:/etc/nginx/nginx.conf:ro
-#      - ./setup/nginx/certificate.conf:/etc/nginx/certificate.conf:ro
-#      - ./setup/nginx/app_docker.conf:/etc/nginx/sites-enabled/app_docker.conf:ro
-#      - ./setup/nginx/monitor_docker.conf:/etc/nginx/sites-enabled/monitor_docker.conf:ro
-#      - ./logs/nginx:/var/log/nginx
-#      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "80:80"
       - "443:443"
-#    depends_on:
-#      - api_prod
     profiles:
       - live_prod
 

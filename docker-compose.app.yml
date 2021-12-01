@@ -20,7 +20,7 @@ services:
 
   nginx:
     volumes:
-      - ./setup/nginx/brif_docker.conf:/etc/nginx/sites-enabled/papel_docker.conf:ro
+      - ./setup/nginx/app_docker.conf:/etc/nginx/sites-enabled/app_docker.conf:ro
     depends_on:
       - api_prod
     profiles:
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./logs/celery:/opt/celery_app/logs
     environment:
-      # TODO: excluding app related variables
+      # TODO: exclude app related variables
       <<: *papel-common-env
     depends_on:
       - rabbitmq
