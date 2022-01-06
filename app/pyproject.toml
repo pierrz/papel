@@ -7,7 +7,7 @@ authors = ["Pierre-Edouard Barrault"]
 [tool.poetry.dependencies]
 python = ">=3.8,<3.9"   # pinned after fastapi docker image
 aiofiles = "==0.7.0"
-celery = "==5.2.0"
+celery = "==5.2.2"
 # TODO: check jinja update
 Jinja2 = "==3.0.3"
 numpy = "==1.21.4"
