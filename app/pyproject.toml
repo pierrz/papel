@@ -10,7 +10,7 @@ aiofiles = "==0.7.0"
 celery = "==5.2.0"
 # TODO: check jinja update
 Jinja2 = "==3.0.3"
-numpy = "==1.21.4"
+numpy = "==1.22.0"
 pydantic = "==1.8.2"
 psycopg2-binary = "==2.9.2"
 python-dotenv = "==0.19.2"
